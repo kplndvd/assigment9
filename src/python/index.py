@@ -2,11 +2,14 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 import threading
-import time
+import datetime
 import requests
 import json
+import time
 app = Flask(__name__)
 CORS(app)
+
+URL = "http://127.0.0.1:5000/getlist"
 #
 # Task
 #  screens:
@@ -23,14 +26,41 @@ CORS(app)
 # ○ Pie chart of student skillz and desired skillz
 
 
-student_list = {"students": [{"id": 1, "first name": "Joe", "last_name": "Demagio", "creation_time": time.time(),
-                "last_update_time": "12:54", "magic_skillz": [{"Animation": 2}, {"Conjuror": 4}, {"Disintegration": 3}],
-                              "desired_skillz": [{"Poison": 4}, {"Possession": 3}]},
-                {"id": 2, "first name": "Michael", "last_name": "Jordan",
-                 "creation_time": time.time(), "last_update_time": "11:43", "magic_skillz": [{"Healing": 4}, {"Illusion": 1}],
-                 "desired_skillz": [{"Self-detonation": 4}, {"Summoning": 4}]}
-                  ]}
+student_list = {"students": [
+                    {"id": 1,
+                         "first_name": "Joe",
+                         "last_name": "Demagio",
+                        "creation_time": datetime.datetime.now().strftime("%d/%m/%Y - %H:%M:%S"),
+                        "last_update_time": "12:54",
+                         "magic_skillz": [
+                             {"Animation": 2},
+                             {"Conjuror": 4},
+                             {"Disintegration": 3}
+                         ],
+                          "desired_skillz": [
+                              {"Poison": 4},
+                              {"Possession": 3}
+                          ],
+                           "course": "Dating with magic"
+                     },
 
+                {"id": 2,
+                 "first_name": "Michael",
+                 "last_name": "Jordan",
+                 "creation_time": datetime.datetime.now().strftime("%d/%m/%Y - %H:%M:%S"),
+                 "last_update_time": "11:43",
+                 "magic_skillz": [
+                     {"Healing": 4},
+                     {"Illusion": 1}
+                 ],
+                 "desired_skillz": [
+                     {"Self-detonation": 4},
+                     {"Summoning": 4}
+                 ],
+                 "course": "Alchemy advanced"
+                 }
+                ]
+             }
 
 # Magic skillz = ["Alchemy", "Animation", "Conjuror", "Disintegration", "Elemental",
 #                 "Healing", "Illusion" ,"Immortality", "Invisibility" ,"Invulnerability" ,"Necromancer",
@@ -64,18 +94,21 @@ def get_student(id):
 @app.route("/getlist")
 def get_student_list():
     global student_list
-    student_list = json.dumps(student_list)
+    # student_list = jsonify(student_list)
     return student_list
 
 
+@app.route("/add_student/<student_data>", methods=['POST'])
+def edit_level(student_data):
+    global student_list
+    student_list.append(student_data)
+
+
 if __name__ == "__main__":
-    import threading
     threading.Thread(target=app.run).start()
     print("yay")
-    import time
     time.sleep(0.5)
-    import requests
-    requests.get("http://127.0.0.1:5000/getstudent/1" )
-    #app.run()
+    requests.get(URL)
+
 
 
