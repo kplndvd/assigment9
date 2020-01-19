@@ -1,11 +1,12 @@
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import threading
 import datetime
 import requests
 import json
 import time
+import operator
 app = Flask(__name__)
 CORS(app)
 
@@ -94,21 +95,21 @@ def get_student(id):
 @app.route("/getlist")
 def get_student_list():
     global student_list
-    # student_list = jsonify(student_list)
     return student_list
 
 
-@app.route("/add_student/<student_data>", methods=['POST'])
-def edit_level(student_data):
+@app.route("/add_student", methods=['POST'])
+def add_student():
     global student_list
-    student_list.append(student_data)
+    student_data = request.json
+    new_id_var = student_list['students'][-1]['id']
+    student_data['id'] = new_id_var + 1
+    student_list['students'].append(student_data)
+    return "ok"
 
 
 if __name__ == "__main__":
-    threading.Thread(target=app.run).start()
-    print("yay")
-    time.sleep(0.5)
-    requests.get(URL)
+    app.run()
 
 
 
