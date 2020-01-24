@@ -14,21 +14,26 @@ import ShowStudentList from "./components/ShowStudentList"
 import ShowSingleStudent from './components/ShowSingleStudent'
 import Home from './components/Home'
 
+// function passerforstate(){
+
+// }
 
 function App() {
   return (
     <div className="App">
-
-      <Router>
-        <Link to="/">Home </Link>
-        <Link to="/addNewStudent">Add New Student </Link>
-        <Link to="/ShowSingleStudent">Show Single Student </Link>
-        <Link to="/ShowStudentList">Show Student List </Link>
-        <Link to="/Dashboard"> Dashboard Statistics </Link>
+{/* className="navbar" className="navbar_links navbar_home" className="navbar_links navbar_newstudent"
+className="navbar_links navbar_single" className="navbar_links navbar_list" className="navbar_links navbar_dash" */}
+      <Router >
+        <div >
+         <Link to="/" className = 'linknav'> Home/  </Link> 
+         <Link to="/addNewStudent" className = 'linknav'> Add New Student/ </Link> 
         
+        <Link to="/ShowStudentList" className = 'linknav' > Show Student List/  </Link>
+        <Link to="/Dashboard" className = 'linknav'>  Dashboard Statistics/ </Link>
+        </div>
         <Switch>
 
-          <Route exact path="/">
+           <Route exact path="/">
             <Home />
           </Route>
 
@@ -36,9 +41,9 @@ function App() {
             <NewStudent />
           </Route>
           
-          <Route exact path="/ShowSingleStudent">
-            <ShowSingleStudent />
-          </Route>
+          <Route path="/ShowSingleStudent">
+            <ShowSingleStudent id={"id"}/>
+          </Route> 
           
           <Route exact path="/ShowStudentList">
             <ShowStudentList />

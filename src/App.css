@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -35,4 +36,72 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.desktop{
+  position: fixed;
+  width: 1440px;
+  height: 1024px;
+  background: #15202B;
+  }
+.navbar{
+  position: absolute;
+width: 1076px;
+height: 58px;
+left: 15px;
+top: 0px;
+background: #343A40;
+border-radius: 6px;
+margin-left: 181px;
+
+}
+
+
+
+.navbar_links{
+  
+position: absolute;
+width: 38px;
+height: 16px;
+top: 19px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+color: #FFFFFF;
+
+}
+.linknav{
+  text-decoration: none;
+}
+
+.linknav:hover{
+  text-decoration: underline;
+}
+
+.navbar_home{
+  left: 315px;
+}
+
+.navbar_newstudent{
+left: 450px;
+}
+
+.navbar_single{
+left: 634px;
+}
+.navbar_list{
+  left: 801px;
+}
+
+.navbar_dash{
+  left: 967px;
+}
+
+.ShowStudentList{
+  margin-top: 20px;
 }

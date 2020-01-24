@@ -89,6 +89,28 @@ def add_student():
     return "ok"
 
 
+@app.route("/edit_skills", methods=['POST'])
+def edit_skill():
+    skill_data = request.json
+    if skill_data["desired_skills"] is not None:
+        desired = skill_data["desired_skills"]
+        print("desired"+desired)
+    if skill_data["existing_skills"] is not None:
+        existing = skill_data["existing_skills"]
+        print("existing "+existing)
+    global student_list
+    for student in student_list["students"]:
+        print("id from sent:" + skill_data['id'])
+        if skill_data['id'] == students['id']:
+            for props in item:
+                if existing:
+                    string.replace(student_list["students"]["existing_skills"], existing)
+
+                if desired:
+                    string.replace(student_list["students"]["desired_skills"], desired)
+    return "ok"
+
+
 if __name__ == "__main__":
     app.run()
 

@@ -1,20 +1,33 @@
 
 import axios from 'axios';
 
-
-const Url = "http://127.0.0.1:5000/";
+const Url = "http://127.0.0.1:5000";
 
 export function GetStudent(id) {
-    return axios.get(Url+"/id");
+    return axios.get(`${Url}/getstudent/${id}`);
 }
 
 export function GetStudentList() {
 
-    return axios.get(Url);
+    return axios.get(`${Url}/getlist`);
 }   
 
-export function AddStudent() {
-
-    return axios.post(Url);
+export function AddStudent(student_data) {
+    
+    return axios.post(Url + '/add_student', student_data);
 } 
+
+export function SkillUpdate(skill_data) {
+    
+    return axios.post(Url + '/edit_skills', skill_data);
+}
+
+
+// export function updateStudent(id) {
+//     return axios.put(`${Url}/students/${student.id} `, student);
+// }
+
+// export function deleteStudent(id) {
+//     return axios.delete(`${Url}/getlist/${id} `);
+// }
 
